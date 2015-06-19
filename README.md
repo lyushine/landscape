@@ -8,6 +8,7 @@
 不必考虑竖屏的布局减少开发维护成本提升用户体验。
 
 ##使用方式：
+<pre>
 <script src="http://ossweb-img.qq.com/images/js/landscape/landscape.min.js"></script>
 <script>
 	var Shine_landscape = new Shine_landscape({
@@ -15,7 +16,7 @@
 	    prefix:'Shine',
 	});
 </script>
-
+</pre>
 ## 具体参数说明（标红为必填，其他为选填）：
 
 pic:图片地址 如'http://ossweb-img.qq.com/images/js/landscape/landscape.png',
