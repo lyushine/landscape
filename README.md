@@ -19,9 +19,15 @@
 具体参数说明（标红为必填，其他为选填）：
 
 pic:图片地址 如'http://ossweb-img.qq.com/images/js/landscape/landscape.png',
+
 picZoom:图片缩放比例 如 2,
+
 mode:页面模式，如'portrait'或'landscape',
+
 bgcolor:背景色,如 '#000',
+
 txt:提示文字, 如 '为了更好的体验，请将手机/平板竖过来',
+
 txtColor: 提示文字颜色 如'#ffd40a',
+
 prefix:前缀 如 'Shine'
