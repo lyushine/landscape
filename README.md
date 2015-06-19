@@ -1,6 +1,6 @@
 /**
- * 移动端竖屏提示小玩意
- * @author shineliang
+ * 移动端竖屏切换提示
+ * @author lyushine
  * @create 2014/08/05 update 2015/06/18
  */
  
