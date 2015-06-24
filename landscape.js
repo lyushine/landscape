@@ -1,5 +1,5 @@
 /**
- * 移动端竖屏提示小玩意
+ * 移动端横竖屏提示
  * @author shineliang
  * @create 2014/08/05 update 2015/06/18
  */
@@ -11,7 +11,8 @@ var Shine_landscape = function(option){
 		'bgcolor' : '#32373b',
 		'txtColor': '#ffd40a',
 		'prefix':'Shine',
-		'picZoom':2
+		'picZoom':2,
+		'zIndex':99
 	};
 	if(option.mode == 'portrait' || option.mode ==""){
 		_this.option.txt = '为了更好的体验，请将手机/平板竖过来';
@@ -19,9 +20,9 @@ var Shine_landscape = function(option){
 	for (var k in option) if(option[k] != '') _this.option[k] = option[k];
 	function createCss(){
 		var cssBlock = 
-		'.'+_this.option.prefix+'_landscape{width:100%; height:100%; background:'+_this.option.bgcolor+';position: fixed; left:0;top: 0;z-index:99999; display:none; text-align: center;}'
+		'.'+_this.option.prefix+'_landscape{width:100%; height:100%; background:'+_this.option.bgcolor+';position: fixed; left:0;top: 0;z-index:'+_this.option.zIndex+'; display:none; text-align: center;}'
 		+'.'+_this.option.prefix+'_landscape_box{position: relative; margin-left: auto; margin-right: auto; top: 50%; transform:translateY(-50%); -webkit-transform:translateY(-50%);}'
-		+'.'+_this.option.prefix+'_landscape span{font-size:22px;display:block;color:'+_this.option.txtColor+'; text-align:center;width: 100%;height: 25px;padding-top: 10px; line-height:2;}'
+		+'.'+_this.option.prefix+'_landscape span{font-size:22px;display:block;color:'+_this.option.txtColor+'; text-align:center;width: 100%;padding-top: 10px; line-height:2;}'
 		+'.'+_this.option.prefix+'_landscape img{-webkit-animation: Shine_landscapeAni 1.5s ease infinite alternate;animation: Shine_landscapeAni 1.5s ease infinite alternate;}'
 		+'@-webkit-keyframes '+_this.option.prefix+'_landscapeAni{0% {-webkit-transform:rotate(-90deg);}30% {-webkit-transform:rotate(-90deg);}70%{-webkit-transform:rotate(0deg);}100% {-webkit-transform:rotate(0deg);}}'
 		+'@keyframes '+_this.option.prefix+'_landscapeAni{0% {transform:rotate(-90deg);}30% {transform:rotate(-90deg);}70%{transform:rotate(0deg);}100% {transform:rotate(0deg);}}';
