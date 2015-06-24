@@ -10,7 +10,7 @@
 ##使用方式：
 	<script src="http://ossweb-img.qq.com/images/js/landscape/landscape.min.js"></script>
 	<script>
-		var Shine_landscape = new Shine_landscape({
+		var landscape = new landscape({
 		    mode:'portrait',//portrait,landscape
 		    prefix:'Shine',
 		});
