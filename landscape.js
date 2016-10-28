@@ -1,7 +1,7 @@
 /**
  * 移动端横竖屏提示
  * @author shineliang
- * @create 2014/08/05 update 2015/06/18
+ * @create 2014/08/05 update 2015/12/28
  */
 var landscape = function(option){
 	var _this = this;
@@ -10,20 +10,27 @@ var landscape = function(option){
 		'mode' : 'portrait',
 		'bgcolor' : '#32373b',
 		'txtColor': '#ffd40a',
+		'txt':false,
 		'prefix':'Shine',
 		'picZoom':2,
-		'zIndex':99
+		'zIndex':9999,
+		'init':false,
+		'landback':false
 	};
-	if(option.mode == 'portrait' || option.mode ==""){
-		_this.option.txt = '为了更好的体验，请将手机/平板竖过来';
-	}else _this.option.txt = '为了更好的体验，请将手机/平板横过来';
+
+	if(!(_this.option.txt)){
+		if( option.mode == 'portrait' || option.mode =="" ){
+			_this.option.txt = decodeURIComponent('%E4%B8%BA%E4%BA%86%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%93%E9%AA%8C%EF%BC%8C%E8%AF%B7%E5%B0%86%E6%89%8B%E6%9C%BA%2F%E5%B9%B3%E6%9D%BF%E7%AB%96%E8%BF%87%E6%9D%A5');
+		}else _this.option.txt = decodeURIComponent('%E4%B8%BA%E4%BA%86%E6%9B%B4%E5%A5%BD%E7%9A%84%E4%BD%93%E9%AA%8C%EF%BC%8C%E8%AF%B7%E5%B0%86%E6%89%8B%E6%9C%BA%2F%E5%B9%B3%E6%9D%BF%E6%A8%AA%E8%BF%87%E6%9D%A5');
+	}
+	
 	for (var k in option) if(option[k] != '') _this.option[k] = option[k];
 	function createCss(){
 		var cssBlock = 
-		'.'+_this.option.prefix+'_landscape{width:100%; height:100%; background:'+_this.option.bgcolor+';position: fixed; left:0;top: 0;z-index:'+_this.option.zIndex+'; display:none; text-align: center;}'
+		'.'+_this.option.prefix+'_landscape{width:100%; height:100%; background:'+_this.option.bgcolor+';position: fixed; left:0; right:0; top: 0; bottom:0;z-index:'+_this.option.zIndex+'; display:none; text-align: center;}'
 		+'.'+_this.option.prefix+'_landscape_box{position: relative; margin-left: auto; margin-right: auto; top: 50%; transform:translateY(-50%); -webkit-transform:translateY(-50%);}'
 		+'.'+_this.option.prefix+'_landscape span{font-size:22px;display:block;color:'+_this.option.txtColor+'; text-align:center;width: 100%;padding-top: 10px; line-height:2;}'
-		+'.'+_this.option.prefix+'_landscape img{-webkit-animation: Shine_landscapeAni 1.5s ease infinite alternate;animation: Shine_landscapeAni 1.5s ease infinite alternate;}'
+		+'.'+_this.option.prefix+'_landscape img{width:auto !important;-webkit-animation: '+_this.option.prefix+'_landscapeAni 1.5s ease infinite alternate;animation: '+_this.option.prefix+'_landscapeAni 1.5s ease infinite alternate;}'
 		+'@-webkit-keyframes '+_this.option.prefix+'_landscapeAni{0% {-webkit-transform:rotate(-90deg);}30% {-webkit-transform:rotate(-90deg);}70%{-webkit-transform:rotate(0deg);}100% {-webkit-transform:rotate(0deg);}}'
 		+'@keyframes '+_this.option.prefix+'_landscapeAni{0% {transform:rotate(-90deg);}30% {transform:rotate(-90deg);}70%{transform:rotate(0deg);}100% {transform:rotate(0deg);}}';
 		var style = document.createElement("style");
@@ -35,7 +42,7 @@ var landscape = function(option){
 		var landscapeDom = document.createElement("div");
 	    landscapeDom.className= _this.option.prefix+'_landscape';
 	    landscapeDom.id = _this.option.prefix+'_landscape'; 
-	    landscapeDom.innerHTML = '<div class="'+_this.option.prefix+'_landscape_box"><img src="'+_this.option.pic+'" id="'+_this.option.prefix+'_landscape_pic'+'" /><span>'+_this.option.txt+'</span></div>';
+	    landscapeDom.innerHTML = '<div class="'+_this.option.prefix+'_landscape_box"><img src="'+_this.option.pic+'" id="'+_this.option.prefix+'_landscape_pic'+'" style="display:inline-block;" /><span>'+_this.option.txt+'</span></div>';
 	    document.getElementsByTagName("body")[0].appendChild(landscapeDom);
 		var img_url = _this.pic;
 		var img = new Image();
@@ -46,7 +53,8 @@ var landscape = function(option){
 		};
 	}
 	function landscape(){
-	 	if(window.screen.width > window.screen.height){
+		if(_this.option.init){_this.option.init();}
+	 	if(document.documentElement.clientWidth > document.documentElement.clientHeight){
             document.getElementById(_this.option.prefix+'_landscape').style.display = (_this.option.mode=="portrait"?"block":"none");
         }else{
         	document.getElementById(_this.option.prefix+'_landscape').style.display = (_this.option.mode=="portrait"?"none":"block");
@@ -55,13 +63,19 @@ var landscape = function(option){
 	createCss();
 	createDom();
 	window.addEventListener('DOMContentLoaded',function(){
-		setTimeout(function(){
-			landscape();
-		},50);
+		 var sUserAgent = navigator.userAgent.toLowerCase();
+		if (sUserAgent.indexOf("android") != -1||sUserAgent.indexOf("ipad") != -1||sUserAgent.indexOf("iphone") != -1) {
+			setTimeout(function(){
+				landscape();
+			},50);
+		}
 	});
 	window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function(){
 		if(window.orientation==180 || window.orientation==0 || window.orientation==90 || window.orientation==-90){
 			landscape();
+			if(_this.option.landback){
+                _this.option.landback();
+            }
 		}
 	}, false);
 };
