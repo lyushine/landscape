@@ -10,7 +10,7 @@
 <script>
     new landscape({
         mode:'portrait',
-        prefix:'Shine',
+        prefix:'Shine'
     });
 </script>
 ```
@@ -23,8 +23,8 @@ picZoom : 图片缩放比例 如 2,
 mode    : [*必填] 页面模式, 'portrait': 横屏提示, 'landscape': 竖屏提示,
 bgcolor : 背景色,如 '#000',
 txt     : 提示文字, 如 '为了更好的体验，请将手机/平板竖过来',
-txtColor: 提示文字颜色 如'#ffd40a',
-prefix  : 前缀 如 'Shine'
+txtColor: 提示文字颜色 如 '#ffd40a',
+prefix  : 前缀 如 'Shine', 防止样式冲突
 zIndex  : 层级覆盖 z-index 值
 ```
 
