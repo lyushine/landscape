@@ -30,4 +30,4 @@ zIndex  : 层级覆盖 z-index 值
 
 ## Demo
 
-打开 `demo.htm`, <kbd>F12</kbd> 打开开发工具手机预览, 切换手机平衡查看效果！
+打开 `demo.htm`, <kbd>F12</kbd> 打开开发工具手机预览, 切换横屏查看效果！
