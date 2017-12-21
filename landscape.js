@@ -60,10 +60,24 @@ var landscape = function (option) {
 		if (_this.option.init) {
 			_this.option.init();
 		}
-		if (document.documentElement.clientWidth > document.documentElement.clientHeight) {
-			document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "block" : "none");
+		var width = document.documentElement.clientWidth;
+		var height = document.documentElement.clientHeight;
+		if (navigator.userAgent.toLowerCase().indexOf("micromessenger") != -1) {
+			setTimeout(function () {
+				width = document.documentElement.clientWidth;
+				height = document.documentElement.clientHeight;
+				if (width > height) {
+					document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "block" : "none");
+				} else {
+					document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "none" : "block");
+				}
+			}, 50);
 		} else {
-			document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "none" : "block");
+			if (width > height) {
+				document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "block" : "none");
+			} else {
+				document.getElementById(_this.option.prefix + '_landscape').style.display = (_this.option.mode == "portrait" ? "none" : "block");
+			}
 		}
 	}
 	createCss();
