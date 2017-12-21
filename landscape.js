@@ -1,7 +1,7 @@
 /**
  * 移动端横竖屏提示
  * @author shineliang
- * @create 2014/08/05 update 2015/12/28
+ * @create 2014/08/05 update 2017/12/21
  */
 var landscape = function (option) {
 	var _this = this;
