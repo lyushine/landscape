@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<title>Landscape Demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
+
 <body>
-<script src="http://ossweb-img.qq.com/images/js/landscape/landscape.min.js"></script>
-<script>
-	var landscape = new landscape({
-	    mode:'portrait',//portrait,landscape
-	    prefix:'Shine',
-	});
-</script>
+	<p>F12 打开开发工具手机预览, 切换横屏查看效果！:p</p>
+	<script src="landscape.js"></script>
+	<script>
+		(function () {
+			new landscape({
+				mode: 'portrait',
+				prefix: 'shine'
+			});
+		})()
+	</script>
 </body>
+
 </html>
